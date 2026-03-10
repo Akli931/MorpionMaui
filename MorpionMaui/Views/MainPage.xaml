@@ -7,22 +7,17 @@
 
     <VerticalStackLayout Padding="24,40,24,24" Spacing="16" VerticalOptions="Center">
 
-        <!-- Titre du jeu -->
-        <Label x:Name="TitleLabel"
-               Text="MORPION"
+        <Label Text="MORPION"
                FontSize="36"
                FontAttributes="Bold"
                TextColor="#e94560"
                HorizontalOptions="Center" />
 
-        <!-- Indique à qui c'est le tour -->
-        <Label x:Name="StatusLabel"
-               Text="Tour du joueur X"
+        <Label Text="{Binding StatusText}"
                FontSize="20"
                TextColor="White"
                HorizontalOptions="Center" />
 
-        <!-- Grille 3x3 -->
         <Grid ColumnDefinitions="*,*,*"
               RowDefinitions="*,*,*"
               WidthRequest="300"
@@ -30,75 +25,72 @@
               HorizontalOptions="Center">
 
             <!-- Ligne 0 -->
-            <Button Grid.Row="0" Grid.Column="0" x:Name="Btn00" Text=""
+            <Button Grid.Row="0" Grid.Column="0"
+                    Text="{Binding Cell00}"
                     FontSize="48" FontAttributes="Bold"
                     BackgroundColor="#16213e" TextColor="White"
                     CornerRadius="16" Margin="6"
-                    Clicked="OnCellClicked" CommandParameter="0,0" />
+                    Command="{Binding PlayCommand}" CommandParameter="0,0" />
 
-            <Button Grid.Row="0" Grid.Column="1" x:Name="Btn01" Text=""
+            <Button Grid.Row="0" Grid.Column="1"
+                    Text="{Binding Cell01}"
                     FontSize="48" FontAttributes="Bold"
                     BackgroundColor="#16213e" TextColor="White"
                     CornerRadius="16" Margin="6"
-                    Clicked="OnCellClicked" CommandParameter="0,1" />
+                    Command="{Binding PlayCommand}" CommandParameter="0,1" />
 
-            <Button Grid.Row="0" Grid.Column="2" x:Name="Btn02" Text=""
+            <Button Grid.Row="0" Grid.Column="2"
+                    Text="{Binding Cell02}"
                     FontSize="48" FontAttributes="Bold"
                     BackgroundColor="#16213e" TextColor="White"
                     CornerRadius="16" Margin="6"
-                    Clicked="OnCellClicked" CommandParameter="0,2" />
+                    Command="{Binding PlayCommand}" CommandParameter="0,2" />
 
             <!-- Ligne 1 -->
-            <Button Grid.Row="1" Grid.Column="0" x:Name="Btn10" Text=""
+            <Button Grid.Row="1" Grid.Column="0"
+                    Text="{Binding Cell10}"
                     FontSize="48" FontAttributes="Bold"
                     BackgroundColor="#16213e" TextColor="White"
                     CornerRadius="16" Margin="6"
-                    Clicked="OnCellClicked" CommandParameter="1,0" />
+                    Command="{Binding PlayCommand}" CommandParameter="1,0" />
 
-            <Button Grid.Row="1" Grid.Column="1" x:Name="Btn11" Text=""
+            <Button Grid.Row="1" Grid.Column="1"
+                    Text="{Binding Cell11}"
                     FontSize="48" FontAttributes="Bold"
                     BackgroundColor="#16213e" TextColor="White"
                     CornerRadius="16" Margin="6"
-                    Clicked="OnCellClicked" CommandParameter="1,1" />
+                    Command="{Binding PlayCommand}" CommandParameter="1,1" />
 
-            <Button Grid.Row="1" Grid.Column="2" x:Name="Btn12" Text=""
+            <Button Grid.Row="1" Grid.Column="2"
+                    Text="{Binding Cell12}"
                     FontSize="48" FontAttributes="Bold"
                     BackgroundColor="#16213e" TextColor="White"
                     CornerRadius="16" Margin="6"
-                    Clicked="OnCellClicked" CommandParameter="1,2" />
+                    Command="{Binding PlayCommand}" CommandParameter="1,2" />
 
             <!-- Ligne 2 -->
-            <Button Grid.Row="2" Grid.Column="0" x:Name="Btn20" Text=""
+            <Button Grid.Row="2" Grid.Column="0"
+                    Text="{Binding Cell20}"
                     FontSize="48" FontAttributes="Bold"
                     BackgroundColor="#16213e" TextColor="White"
                     CornerRadius="16" Margin="6"
-                    Clicked="OnCellClicked" CommandParameter="2,0" />
+                    Command="{Binding PlayCommand}" CommandParameter="2,0" />
 
-            <Button Grid.Row="2" Grid.Column="1" x:Name="Btn21" Text=""
+            <Button Grid.Row="2" Grid.Column="1"
+                    Text="{Binding Cell21}"
                     FontSize="48" FontAttributes="Bold"
                     BackgroundColor="#16213e" TextColor="White"
                     CornerRadius="16" Margin="6"
-                    Clicked="OnCellClicked" CommandParameter="2,1" />
+                    Command="{Binding PlayCommand}" CommandParameter="2,1" />
 
-            <Button Grid.Row="2" Grid.Column="2" x:Name="Btn22" Text=""
+            <Button Grid.Row="2" Grid.Column="2"
+                    Text="{Binding Cell22}"
                     FontSize="48" FontAttributes="Bold"
                     BackgroundColor="#16213e" TextColor="White"
                     CornerRadius="16" Margin="6"
-                    Clicked="OnCellClicked" CommandParameter="2,2" />
+                    Command="{Binding PlayCommand}" CommandParameter="2,2" />
 
         </Grid>
-
-        <!-- Bouton pour recommencer une partie -->
-        <Button x:Name="ResetBtn"
-                Text="Nouvelle Partie"
-                FontSize="18"
-                FontAttributes="Bold"
-                BackgroundColor="#e94560"
-                TextColor="White"
-                CornerRadius="12"
-                HeightRequest="52"
-                Margin="0,10,0,0"
-                Clicked="OnResetClicked" />
 
     </VerticalStackLayout>
 
