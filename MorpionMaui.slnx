@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="MorpionMaui.Tests/MorpionMaui.Tests.csproj" Id="a0c217d4-31c9-45fb-9dc4-2a8b5e6bcf79" />
   <Project Path="MorpionMaui/MorpionMaui.csproj" />
 </Solution>
