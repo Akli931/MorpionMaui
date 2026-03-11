@@ -7,90 +7,129 @@
 
     <VerticalStackLayout Padding="24,40,24,24" Spacing="16" VerticalOptions="Center">
 
-        <Label Text="MORPION"
-               FontSize="36"
-               FontAttributes="Bold"
-               TextColor="#e94560"
-               HorizontalOptions="Center" />
+   
+        <Grid ColumnDefinitions="*,*" IsVisible="{Binding ModeVisible}">
 
-        <Label Text="{Binding StatusText}"
-               FontSize="20"
-               TextColor="White"
-               HorizontalOptions="Center" />
-
-        <Grid ColumnDefinitions="*,*,*"
-              RowDefinitions="*,*,*"
-              WidthRequest="300"
-              HeightRequest="300"
-              HorizontalOptions="Center">
-
-            <!-- Ligne 0 -->
-            <Button Grid.Row="0" Grid.Column="0"
-                    Text="{Binding Cell00}"
-                    FontSize="48" FontAttributes="Bold"
+            <Button Grid.Column="0"
+                    Text="Humain vs Humain"
+                    FontSize="16" FontAttributes="Bold"
                     BackgroundColor="#16213e" TextColor="White"
-                    CornerRadius="16" Margin="6"
-                    Command="{Binding PlayCommand}" CommandParameter="0,0" />
+                    CornerRadius="12" HeightRequest="52" Margin="0,0,4,0"
+                    Command="{Binding ChoisirModeCommand}"
+                    CommandParameter="humain" />
 
-            <Button Grid.Row="0" Grid.Column="1"
-                    Text="{Binding Cell01}"
-                    FontSize="48" FontAttributes="Bold"
-                    BackgroundColor="#16213e" TextColor="White"
-                    CornerRadius="16" Margin="6"
-                    Command="{Binding PlayCommand}" CommandParameter="0,1" />
-
-            <Button Grid.Row="0" Grid.Column="2"
-                    Text="{Binding Cell02}"
-                    FontSize="48" FontAttributes="Bold"
-                    BackgroundColor="#16213e" TextColor="White"
-                    CornerRadius="16" Margin="6"
-                    Command="{Binding PlayCommand}" CommandParameter="0,2" />
-
-            <!-- Ligne 1 -->
-            <Button Grid.Row="1" Grid.Column="0"
-                    Text="{Binding Cell10}"
-                    FontSize="48" FontAttributes="Bold"
-                    BackgroundColor="#16213e" TextColor="White"
-                    CornerRadius="16" Margin="6"
-                    Command="{Binding PlayCommand}" CommandParameter="1,0" />
-
-            <Button Grid.Row="1" Grid.Column="1"
-                    Text="{Binding Cell11}"
-                    FontSize="48" FontAttributes="Bold"
-                    BackgroundColor="#16213e" TextColor="White"
-                    CornerRadius="16" Margin="6"
-                    Command="{Binding PlayCommand}" CommandParameter="1,1" />
-
-            <Button Grid.Row="1" Grid.Column="2"
-                    Text="{Binding Cell12}"
-                    FontSize="48" FontAttributes="Bold"
-                    BackgroundColor="#16213e" TextColor="White"
-                    CornerRadius="16" Margin="6"
-                    Command="{Binding PlayCommand}" CommandParameter="1,2" />
-
-            <!-- Ligne 2 -->
-            <Button Grid.Row="2" Grid.Column="0"
-                    Text="{Binding Cell20}"
-                    FontSize="48" FontAttributes="Bold"
-                    BackgroundColor="#16213e" TextColor="White"
-                    CornerRadius="16" Margin="6"
-                    Command="{Binding PlayCommand}" CommandParameter="2,0" />
-
-            <Button Grid.Row="2" Grid.Column="1"
-                    Text="{Binding Cell21}"
-                    FontSize="48" FontAttributes="Bold"
-                    BackgroundColor="#16213e" TextColor="White"
-                    CornerRadius="16" Margin="6"
-                    Command="{Binding PlayCommand}" CommandParameter="2,1" />
-
-            <Button Grid.Row="2" Grid.Column="2"
-                    Text="{Binding Cell22}"
-                    FontSize="48" FontAttributes="Bold"
-                    BackgroundColor="#16213e" TextColor="White"
-                    CornerRadius="16" Margin="6"
-                    Command="{Binding PlayCommand}" CommandParameter="2,2" />
+            <Button Grid.Column="1"
+                    Text="Humain vs Bot"
+                    FontSize="16" FontAttributes="Bold"
+                    BackgroundColor="#e94560" TextColor="White"
+                    CornerRadius="12" HeightRequest="52" Margin="4,0,0,0"
+                    Command="{Binding ChoisirModeCommand}"
+                    CommandParameter="bot" />
 
         </Grid>
+
+
+        <VerticalStackLayout IsVisible="{Binding JeuVisible}" Spacing="16">
+
+            <Label Text="MORPION"
+                   FontSize="36" FontAttributes="Bold"
+                   TextColor="#e94560"
+                   HorizontalOptions="Center" />
+
+            <Label Text="{Binding StatusText}"
+                   FontSize="20" TextColor="White"
+                   HorizontalOptions="Center" />
+
+            <Grid ColumnDefinitions="*,*,*"
+                  RowDefinitions="*,*,*"
+                  WidthRequest="300" HeightRequest="300"
+                  HorizontalOptions="Center">
+
+                <Button Grid.Row="0" Grid.Column="0" Text="{Binding Cell00}"
+                        FontSize="48" FontAttributes="Bold"
+                        BackgroundColor="#16213e" TextColor="White"
+                        CornerRadius="16" Margin="6"
+                        Command="{Binding PlayCommand}" CommandParameter="0,0" />
+
+                <Button Grid.Row="0" Grid.Column="1" Text="{Binding Cell01}"
+                        FontSize="48" FontAttributes="Bold"
+                        BackgroundColor="#16213e" TextColor="White"
+                        CornerRadius="16" Margin="6"
+                        Command="{Binding PlayCommand}" CommandParameter="0,1" />
+
+                <Button Grid.Row="0" Grid.Column="2" Text="{Binding Cell02}"
+                        FontSize="48" FontAttributes="Bold"
+                        BackgroundColor="#16213e" TextColor="White"
+                        CornerRadius="16" Margin="6"
+                        Command="{Binding PlayCommand}" CommandParameter="0,2" />
+
+                <Button Grid.Row="1" Grid.Column="0" Text="{Binding Cell10}"
+                        FontSize="48" FontAttributes="Bold"
+                        BackgroundColor="#16213e" TextColor="White"
+                        CornerRadius="16" Margin="6"
+                        Command="{Binding PlayCommand}" CommandParameter="1,0" />
+
+                <Button Grid.Row="1" Grid.Column="1" Text="{Binding Cell11}"
+                        FontSize="48" FontAttributes="Bold"
+                        BackgroundColor="#16213e" TextColor="White"
+                        CornerRadius="16" Margin="6"
+                        Command="{Binding PlayCommand}" CommandParameter="1,1" />
+
+                <Button Grid.Row="1" Grid.Column="2" Text="{Binding Cell12}"
+                        FontSize="48" FontAttributes="Bold"
+                        BackgroundColor="#16213e" TextColor="White"
+                        CornerRadius="16" Margin="6"
+                        Command="{Binding PlayCommand}" CommandParameter="1,2" />
+
+                <Button Grid.Row="2" Grid.Column="0" Text="{Binding Cell20}"
+                        FontSize="48" FontAttributes="Bold"
+                        BackgroundColor="#16213e" TextColor="White"
+                        CornerRadius="16" Margin="6"
+                        Command="{Binding PlayCommand}" CommandParameter="2,0" />
+
+                <Button Grid.Row="2" Grid.Column="1" Text="{Binding Cell21}"
+                        FontSize="48" FontAttributes="Bold"
+                        BackgroundColor="#16213e" TextColor="White"
+                        CornerRadius="16" Margin="6"
+                        Command="{Binding PlayCommand}" CommandParameter="2,1" />
+
+                <Button Grid.Row="2" Grid.Column="2" Text="{Binding Cell22}"
+                        FontSize="48" FontAttributes="Bold"
+                        BackgroundColor="#16213e" TextColor="White"
+                        CornerRadius="16" Margin="6"
+                        Command="{Binding PlayCommand}" CommandParameter="2,2" />
+
+            </Grid>
+
+
+            <Grid ColumnDefinitions="*,*,*" Margin="0,20,0,0">
+
+                <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
+                    <Label Text="Victoires" FontSize="14" TextColor="#a8b2d8" HorizontalOptions="Center" />
+                    <Label Text="{Binding Victoires}" FontSize="28" FontAttributes="Bold" TextColor="#2a9d8f" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
+                    <Label Text="Nuls" FontSize="14" TextColor="#a8b2d8" HorizontalOptions="Center" />
+                    <Label Text="{Binding Nuls}" FontSize="28" FontAttributes="Bold" TextColor="#f5a623" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
+                    <Label Text="Défaites" FontSize="14" TextColor="#a8b2d8" HorizontalOptions="Center" />
+                    <Label Text="{Binding Defaites}" FontSize="28" FontAttributes="Bold" TextColor="#e94560" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+            </Grid>
+
+
+            <Button Text="Nouvelle Partie"
+                    FontSize="18" FontAttributes="Bold"
+                    BackgroundColor="#e94560" TextColor="White"
+                    CornerRadius="12" HeightRequest="52"
+                    Margin="0,10,0,0"
+                    Command="{Binding NouvellePartieCommand}" />
+
+        </VerticalStackLayout>
 
     </VerticalStackLayout>
 
