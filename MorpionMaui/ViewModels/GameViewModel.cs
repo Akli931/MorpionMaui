@@ -8,7 +8,7 @@ namespace MorpionMaui.ViewModels
     {
         private readonly GameBoard _board = new();
         private readonly BotPlayer _bot = new();
-        private readonly FakeGameHistory _history = FakeGameHistory.Instance;
+        private readonly DatabaseService _db;
 
         private bool _isVsBot = false;
 
@@ -28,11 +28,17 @@ namespace MorpionMaui.ViewModels
         [ObservableProperty] private int defaites;
         [ObservableProperty] private int nuls;
 
-        public GameViewModel()
+        public GameViewModel(DatabaseService db)
         {
-            Victoires = _history.Victoires;
-            Defaites = _history.Defaites;
-            Nuls = _history.Nuls;
+            _db = db;
+            _ = ChargerStatsAsync();
+        }
+
+        private async Task ChargerStatsAsync()
+        {
+            Victoires = await _db.GetVictoiresAsync();
+            Defaites = await _db.GetDefaitesAsync();
+            Nuls = await _db.GetNulsAsync();
         }
 
         [RelayCommand]
@@ -71,7 +77,7 @@ namespace MorpionMaui.ViewModels
 
             if (_board.IsGameOver)
             {
-                HandleEndGame();
+                await HandleEndGameAsync();
                 return;
             }
 
@@ -86,7 +92,7 @@ namespace MorpionMaui.ViewModels
 
                 if (_board.IsGameOver)
                 {
-                    HandleEndGame();
+                    await HandleEndGameAsync();
                     return;
                 }
             }
@@ -94,7 +100,7 @@ namespace MorpionMaui.ViewModels
             StatusText = $"Tour du joueur {_board.CurrentPlayer}";
         }
 
-        private void HandleEndGame()
+        private async Task HandleEndGameAsync()
         {
             if (_board.Winner.HasValue)
             {
@@ -103,12 +109,12 @@ namespace MorpionMaui.ViewModels
                     if (_board.Winner.Value == 'X')
                     {
                         StatusText = "Tu as gagné !";
-                        _history.AjouterPartie("Victoire");
+                        await _db.AjouterPartieAsync("Victoire");
                     }
                     else
                     {
                         StatusText = "Le bot a gagné !";
-                        _history.AjouterPartie("Défaite");
+                        await _db.AjouterPartieAsync("Défaite");
                     }
                 }
                 else
@@ -119,12 +125,10 @@ namespace MorpionMaui.ViewModels
             else
             {
                 StatusText = "Match nul !";
-                if (_isVsBot) _history.AjouterPartie("Nul");
+                if (_isVsBot) await _db.AjouterPartieAsync("Nul");
             }
 
-            Victoires = _history.Victoires;
-            Defaites = _history.Defaites;
-            Nuls = _history.Nuls;
+            await ChargerStatsAsync();
         }
 
         private void SetCell(int row, int col, string valeur)

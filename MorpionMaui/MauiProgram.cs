@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using MorpionMaui.Models;
 
 namespace MorpionMaui
 {
@@ -15,10 +16,11 @@ namespace MorpionMaui
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+            builder.Services.AddSingleton<DatabaseService>();
 
+#if DEBUG
+            builder.Logging.AddDebug();
+#endif
             return builder.Build();
         }
     }
