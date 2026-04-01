@@ -1,10 +1,18 @@
-﻿namespace MorpionMaui.Models
+﻿using SQLite;
+
+namespace MorpionMaui.Models
 {
+    [Table("GameResults")]
     public class GameResult
     {
-        public string Resultat { get; set; } 
-        public string Adversaire { get; set; } 
-        public DateTime Date { get; set; }   
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
+        public string Resultat { get; set; } = "";
+        public string Adversaire { get; set; } = "";
+        public DateTime Date { get; set; }
+
+        public GameResult() { }
 
         public GameResult(string resultat, string adversaire, DateTime date)
         {
